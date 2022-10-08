@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="jquery.min.js"></script>
+    <script src="require.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <h1>js-demo-app</h1>
+    <div>
+      User <b id="subject"></b> made this request.
+      <p><b>User details (from <span id="profileType"></span>)</b></p>
+      <p>Username: <span id="username"></span></p>
+      <p>Email: <span id="email"></span></p>
+      <p>Full Name: <span id="name"></span></p>
+      <p>First: <span id="givenName"></span></p>
+      <p>Last: <span id="familyName"></span></p>
+    </div>
+  <br>
+  <br>
+  <button onclick="reloadData()">Reload data</button>
+  <div id="customers"></div>
+</body>
+</html>
