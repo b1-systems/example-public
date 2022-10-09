@@ -1,23 +1,35 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script src="jquery.min.js"></script>
     <script src="require.js"></script>
     <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css"></link>
   </head>
   <body>
-    <h1>js-demo-app</h1>
-    <div>
-      User <b id="subject"></b> made this request.
-      <p><b>User details (from <span id="profileType"></span>)</b></p>
-      <p>Username: <span id="username"></span></p>
-      <p>Email: <span id="email"></span></p>
-      <p>Full Name: <span id="name"></span></p>
-      <p>First: <span id="givenName"></span></p>
-      <p>Last: <span id="familyName"></span></p>
-    </div>
-  <br>
-  <br>
-  <button onclick="reloadData()">Reload data</button>
-  <div id="customers"></div>
+    <h1>Public Client Example</h1>
+    <h2>Client Information</h2>
+    <ul class="info">
+      <li>Client ID: <span class="clientId"></span></li>
+    </ul>
+    <h2>Personal Information</h2>
+    <ul class="info">
+      <li>Username: <span id="username"></span></li>
+      <li>Email: <span id="email"></span></li>
+      <li>Full Name: <span id="name"></span></li>
+      <li>First: <span id="givenName"></span></li>
+      <li>Last: <span id="familyName"></span></li>
+    </ul>
+    <h2>Resource Access</h2>
+    <ul class="info">
+      <li>Client roles: <span id="client_roles"></span></li>
+    </ul>
+    <nav>
+      <button onclick="reloadData()">Reload data</button>
+    </nav>
+    <footer>
+      <p class="note">Note: This request was made by user <span id="subject"></span>.</p>
+      <div id="debug"></div>
+    </footer>
 </body>
 </html>

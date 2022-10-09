@@ -1,0 +1,5 @@
+footer { font-size: small; }
+footer, .note, #profileType { font-style: italic; }
+#subject { font-style: normal; font-family: monospace; background-color: lightgrey; }
+footer { margin-top: .5em; }
+.info span { font-family: monospace; }

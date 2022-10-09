@@ -1,35 +1,39 @@
 var keycloak;
 var loadData = function () {
+  var date = Date();
+
+  jQuery('.clientId').html(keycloak.clientId);
   jQuery('#subject').html(keycloak.subject);
 
   if (keycloak.idToken) {
-    jQuery('#profileType').html('IDToken');
+    jQuery('#debug').html('Data loaded from ID token on ' + date + '.');
     jQuery('#username').html(keycloak.idTokenParsed.preferred_username);
     jQuery('#email').html(keycloak.idTokenParsed.email);
     jQuery('#name').html(keycloak.idTokenParsed.name);
     jQuery('#givenName').html(keycloak.idTokenParsed.given_name);
     jQuery('#familyName').html(keycloak.idTokenParsed.family_name);
+    jQuery('#client_roles').html(keycloak.idTokenParsed.resource_access['example-public'].roles);
   } else {
     keycloak.loadUserProfile(function() {
-      jQuery('#profileType').html('Account Service');
+    jQuery('#debug').html('Data loaded from user profile on ' + date + '.');
       jQuery('#username').html(keycloak.profile.username);
       jQuery('#email').html(keycloak.profile.email);
       jQuery('#name').html(keycloak.profile.firstName + ' ' + keycloak.profile.lastName);
       jQuery('#givenName').html(keycloak.profile.firstName);
       jQuery('#familyName').html(keycloak.profile.lastName);
     }, function() {
-      jQuery('#profileType').html('Failed to retrieve user details. Please enable claims or account role');
+      jQuery('#profileType').html('failed');
     });
   }
 };
 var loadFailure = function () {
-  jQuery('#customers').html('<b>Failed to load data.  Check console log</b>');
+  jQuery('#debug').html('<b>Failed to load data.  Check console log</b>');
 };
 var reloadData = function () {
   keycloak.updateToken(10)
     .success(loadData)
     .error(function() {
-      jQuery('#customers').html('<b>Failed to load data.  User is logged out.</b>');
+      jQuery('#debug').html('<b>Failed to load data.  User is logged out.</b>');
     });
 };
 jQuery(function() {
@@ -37,7 +41,10 @@ jQuery(function() {
     require(
       config.keycloak_url + "/js/keycloak.js", function() {
         keycloak = Keycloak('keycloak.json');
-        keycloak.init({ onLoad: 'login-required' }).success(reloadData);
+        keycloak.init({
+          onLoad: 'login-required',
+          silentCheckSsoRedirectUri: config.example_public_url+'/silent-check-sso.html'
+        }).success(reloadData);
     });
   });
 });
