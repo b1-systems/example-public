@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-git clone https://tk-sls.de/gitlab/golang-oidc/example-public.git
+git clone https://github.com/b1-systems/example-public.git
 cd example-public
 sudo mkdir /var/www/example-public
 sudo cp \
