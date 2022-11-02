@@ -20,7 +20,7 @@ sudo cp \
 
 1. Create public client application "example-public" in Keycloak.
    * Set access type to "public".
-   * Set Valid Redirect URIs to a wildcard below the publicly accessible URL of your installation of "example-public", for example "https://www.example.test/example-public/*"
+   * Set Valid Redirect URIs to a wildcard below the publicly accessible URL of your installation of "example-public", for example `https://www.example.test/example-public/*`
 2. In Keycloak, in client "example-public", switch to tab "Installation".
 3. Download client configuration in format "Keycloak JSON".
 4. Copy `keycloak.json` to `/var/www/example-public`.
@@ -33,3 +33,8 @@ sudo cp \
   "keycloak_url": "https://www.example.test/keycloak"}
 ```
 
+## Author, Copyright and License
+
+* Copyright: 2022 B1 Systems GmbH <info@b1-systems.de>
+* Author: Tilman Kranz <tilman.kranz@b1-systems.de>
+* License: MIT License <https://opensource.org/licenses/MIT>
