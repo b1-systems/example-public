@@ -37,8 +37,8 @@ var loadFailure = function () {
 };
 var reloadData = function () {
   keycloak.updateToken(10)
-    .success(loadData)
-    .error(function() {
+    .then(loadData)
+    .catch(function() {
       jQuery('#debug').html('<b>Failed to load data.  User is logged out.</b>');
     });
 };
@@ -46,11 +46,13 @@ jQuery(function() {
   jQuery.getJSON("example-public.json", function(config) {
     require(
       config.keycloak_url + "/js/keycloak.js", function() {
-        keycloak = Keycloak('keycloak.json');
+        keycloak = new Keycloak('keycloak.json');
         keycloak.init({
           onLoad: 'login-required',
           silentCheckSsoRedirectUri: config.example_public_url+'/silent-check-sso.html'
-        }).success(reloadData);
+        }).then(reloadData);
     });
   });
 });
+
+
